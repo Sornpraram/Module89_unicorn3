@@ -115,12 +115,9 @@ def decode(conv_output, NUM_CLASS, i=0):
     conv_shape       = tf.shape(conv_output)
     batch_size       = conv_shape[0]
     output_size      = conv_shape[1]
-    print(conv_output)
-    print(conv_shape)
-    print(batch_size)
-    print(output_size)
+
     conv_output = tf.reshape(conv_output, (batch_size, output_size, output_size, 3, 5 + NUM_CLASS))
-    print(conv_output)
+
     #conv_raw_dxdy = conv_output[:, :, :, :, 0:2] # offset of center position     
     #conv_raw_dwdh = conv_output[:, :, :, :, 2:4] # Prediction box length and width offset
     #conv_raw_conf = conv_output[:, :, :, :, 4:5] # confidence of the prediction box
@@ -144,7 +141,7 @@ def decode(conv_output, NUM_CLASS, i=0):
     #y_grid = tf.cast(xy_grid, tf.float32)
 
     # Calculate the center position of the prediction box:
-    pred_xy = (tf.sigmoid(conv_raw_dxdy) + xy_grid) * STRIDES[i] # คูณ STRIDE กลับ เพื่อหาตำแหน่งในภาพ input (416*416) ถ้าไม่งั้นตำแหน่งจะอยู่ในรูป 26*26 หรือ 13*13
+    pred_xy = (tf.sigmoid(conv_raw_dxdy) + xy_grid) * STRIDES[i]
     # Calculate the length and width of the prediction box:
     pred_wh = (tf.exp(conv_raw_dwdh) * ANCHORS[i]) * STRIDES[i]
 

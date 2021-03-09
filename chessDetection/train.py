@@ -55,6 +55,7 @@ def main():
         elif MODEL_TYPE == "yolov3":
             Darknet_weights = YOLO_V3_TINY_WEIGHTS
 
+        print(Darknet_weights)
         Darknet = Create_Yolo(input_size=INPUT_RESOLUTION, CLASSES=YOLO_COCO_CLASSES)
         load_yolo_weights(Darknet, Darknet_weights) # use darknet weights
 
@@ -76,6 +77,9 @@ def main():
                     cprint(f"Transfer Learning >>> {YOLO_V3_TINY_WEIGHTS} ", "green")
                 except:
                     print("skipping", yolo.layers[i].name)
+
+    if not TRAIN_TRANSFER and not TRAIN_FROM_CHECKPOINT:
+        cprint(f"Train from Zero >>> {MODEL_TYPE} ", "blue")
 
     optimizer = tf.keras.optimizers.Adam()
 

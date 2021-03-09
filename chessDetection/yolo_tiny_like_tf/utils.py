@@ -64,8 +64,20 @@ def load_yolo_weights(model, weights_file):
             conv_weights = conv_weights.reshape(conv_shape).transpose([2, 3, 1, 0])
 
             if i not in range2:
-                conv_layer.set_weights([conv_weights])
-                bn_layer.set_weights(bn_weights)
+                # conv_layer.set_weights([conv_weights])
+                # print(len(bn_layer))
+                # print(bn_layer.shape)
+                print(conv_weights.shape)
+                print(bn_weights.shape)
+                # bn_layer.set_weights(bn_weights)
+                try:
+                    # yolo.layers[i].set_weights(layer_weights)
+                    conv_layer.set_weights([conv_weights])
+                    bn_layer.set_weights(bn_weights)
+                    # cprint(f"Transfer Learning >>> {YOLO_V4_TINY_WEIGHTS} ", "green")
+                except:
+                    print("skipping")
+
             else:
                 conv_layer.set_weights([conv_weights, conv_bias])
 
