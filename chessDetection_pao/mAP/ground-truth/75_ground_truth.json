@@ -1,0 +1,1 @@
+[{"class_name": "bishop", "bbox": "501 217 550 308", "used": true}, {"class_name": "pawn", "bbox": "407 442 453 507", "used": true}, {"class_name": "pawn", "bbox": "652 441 700 506", "used": true}, {"class_name": "knight", "bbox": "560 657 622 745", "used": true}]

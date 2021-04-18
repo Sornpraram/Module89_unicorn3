@@ -1,0 +1,6 @@
+bishop
+queen
+pawn
+rook
+king
+knight
